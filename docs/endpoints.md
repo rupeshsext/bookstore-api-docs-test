@@ -10,7 +10,7 @@ All endpoints need the `X-API-Key` header. See [Authentication](authentication.m
 |---|---|---|
 | `id` | string | Unique book ID, for example `bk_001`. |
 | `title` | string | Book title. |
-| `author` | string | Name of the book's author. |
+| `author_name` | string | Name of the book's author. |
 | `isbn` | string | ISBN of the book. Can be null. |
 | `price` | number | Price in US dollars. |
 | `published_year` | integer | Year the book was published. Can be null. |
@@ -35,7 +35,7 @@ Request body:
 | Field | Type | Required |
 |---|---|---|
 | `title` | string | Yes |
-| `author` | string | Yes |
+| `author_name` | string | Yes |
 | `price` | number | Yes |
 | `isbn` | string | No |
 | `published_year` | integer | No |
@@ -51,13 +51,13 @@ Returns one book by its ID.
 |---|---|---|
 | `id` | string | The book ID, for example `bk_001`. |
 
-**Response `200`:** a Book object with these fields: `id`, `title`, `author`, `isbn`, `price`, `published_year`, `in_stock`.
+**Response `200`:** a Book object with these fields: `id`, `title`, `author_name`, `isbn`, `price`, `published_year`, `in_stock`.
 
 ```json
 {
   "id": "bk_001",
   "title": "The Silent Orchard",
-  "author": "Mira Okafor",
+  "author_name": "Mira Okafor",
   "isbn": "000-0-00-000001-1",
   "price": 14.99,
   "published_year": 2019,
