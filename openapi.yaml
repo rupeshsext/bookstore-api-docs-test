@@ -99,7 +99,7 @@ components:
   schemas:
     Book:
       type: object
-      required: [id, title, author, price, published_year, in_stock]
+      required: [id, title, author_name, price, published_year, in_stock]
       properties:
         id:
           type: string
@@ -107,7 +107,7 @@ components:
         title:
           type: string
           example: The Silent Orchard
-        author:
+        author_name:
           type: string
           example: Mira Okafor
         isbn:
@@ -125,11 +125,11 @@ components:
           example: true
     NewBook:
       type: object
-      required: [title, author, price]
+      required: [title, author_name, price]
       properties:
         title:
           type: string
-        author:
+        author_name:
           type: string
         isbn:
           type: string
