@@ -1,0 +1,149 @@
+openapi: 3.0.3
+info:
+  title: Bookstore API
+  version: 1.0.0
+  description: >-
+    A made-up bookstore API used only for testing documentation tools.
+    All data is fake. The server URL below does not exist.
+servers:
+  - url: https://api.example-bookstore.test/v1
+security:
+  - ApiKeyAuth: []
+paths:
+  /books:
+    get:
+      summary: List books
+      operationId: listBooks
+      parameters:
+        - name: limit
+          in: query
+          description: Maximum number of books to return.
+          schema:
+            type: integer
+            default: 20
+            maximum: 100
+      responses:
+        '200':
+          description: A list of books.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      summary: Add a book
+      operationId: createBook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewBook'
+      responses:
+        '201':
+          description: The book was created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+        '400':
+          description: A required field is missing or invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /books/{id}:
+    get:
+      summary: Get a book by ID
+      operationId: getBook
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The book ID, for example bk_001.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The requested book.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: No book has this ID.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+  responses:
+    Unauthorized:
+      description: The X-API-Key header is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Book:
+      type: object
+      required: [id, title, author, price, published_year, in_stock]
+      properties:
+        id:
+          type: string
+          example: bk_001
+        title:
+          type: string
+          example: The Silent Orchard
+        author:
+          type: string
+          example: Mira Okafor
+        isbn:
+          type: string
+          example: 000-0-00-000001-1
+        price:
+          type: number
+          format: float
+          example: 14.99
+        published_year:
+          type: integer
+          example: 2019
+        in_stock:
+          type: boolean
+          example: true
+    NewBook:
+      type: object
+      required: [title, author, price]
+      properties:
+        title:
+          type: string
+        author:
+          type: string
+        isbn:
+          type: string
+        price:
+          type: number
+          format: float
+        published_year:
+          type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: not_found
+        message:
+          type: string
+          example: No book has the ID bk_999.
