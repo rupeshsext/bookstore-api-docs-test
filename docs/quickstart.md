@@ -28,7 +28,7 @@ Response:
 {
   "id": "bk_001",
   "title": "The Silent Orchard",
-  "author": "Mira Okafor",
+  "author_name": "Mira Okafor",
   "isbn": "000-0-00-000001-1",
   "price": 14.99,
   "published_year": 2019,
@@ -42,7 +42,7 @@ Response:
 curl -X POST https://api.example-bookstore.test/v1/books \
   -H "X-API-Key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
-  -d '{"title": "New Book", "author": "Jane Doe", "price": 9.99}'
+  -d '{"title": "New Book", "author_name": "Jane Doe", "price": 9.99}'
 ```
 
 ## Next steps

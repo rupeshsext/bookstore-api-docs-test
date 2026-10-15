@@ -8,7 +8,7 @@ const books = [
   {
     id: 'bk_001',
     title: 'The Silent Orchard',
-    author: 'Mira Okafor',
+    author_name: 'Mira Okafor',
     isbn: '000-0-00-000001-1',
     price: 14.99,
     published_year: 2019,
@@ -17,7 +17,7 @@ const books = [
   {
     id: 'bk_002',
     title: 'Rivers of Glass',
-    author: 'Tomas Lindqvist',
+    author_name: 'Tomas Lindqvist',
     isbn: '000-0-00-000002-8',
     price: 22.5,
     published_year: 2021,
@@ -43,14 +43,14 @@ app.get('/v1/books', (req, res) => {
 
 // POST /books - add a book
 app.post('/v1/books', (req, res) => {
-  const { title, author, isbn, price, published_year } = req.body || {};
-  if (!title || !author || typeof price !== 'number') {
-    return res.status(400).json({ code: 'invalid_request', message: 'title, author and price are required.' });
+  const { title, author_name, isbn, price, published_year } = req.body || {};
+  if (!title || !author_name || typeof price !== 'number') {
+    return res.status(400).json({ code: 'invalid_request', message: 'title, author_name and price are required.' });
   }
   const book = {
     id: `bk_${String(books.length + 1).padStart(3, '0')}`,
     title,
-    author,
+    author_name,
     isbn: isbn || null,
     price,
     published_year: published_year || null,
