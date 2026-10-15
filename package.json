@@ -1,0 +1,1 @@
+{"name":"bookstore-api-docs-test","version":"1.0.0","description":"Made-up bookstore API for testing documentation tools. All data is fake.","main":"src/server.js","scripts":{"start":"node src/server.js"},"dependencies":{"express":"^4.19.2"},"license":"MIT"}
