@@ -11,7 +11,6 @@ Made-up bookstore API and docs for testing Mintlify and Dosu free plans. Public,
 | `docs/quickstart.md` | Quickstart page |
 | `docs/authentication.md` | Authentication page |
 | `docs/endpoints.md` | Endpoints page |
-| `TEST_PLAN.md` | Test question, field change, and expected answers |
 
 ## Run the fake server (optional)
 
